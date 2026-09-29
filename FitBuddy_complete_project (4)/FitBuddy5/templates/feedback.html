@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="narrow">
+    <div class="section-heading">
+        <span class="eyebrow">FEEDBACK LOOP</span>
+        <h1>Refine your workout plan</h1>
+        <p>FitBuddy will use your original plan and feedback to create a complete revised plan.</p>
+    </div>
+
+    <form class="card form-card" action="/submit-feedback" method="post">
+        <label>
+            User ID
+            <input name="user_id" required maxlength="50" placeholder="FB001">
+        </label>
+
+        <label>
+            What would you like to change?
+            <textarea name="feedback" required minlength="3" maxlength="2000"
+                placeholder="Example: Add more cardio and include one extra rest day."></textarea>
+        </label>
+
+        <button class="primary-button" type="submit">Update My Plan</button>
+    </form>
+</section>
+{% endblock %}

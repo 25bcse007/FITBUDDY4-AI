@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <span class="eyebrow">AI-POWERED FITNESS</span>
+        <h1>Your personal 7-day fitness plan.</h1>
+        <p>
+            Enter your basic fitness information and FitBuddy will generate a
+            structured workout plan plus a practical nutrition or recovery tip.
+        </p>
+    </div>
+
+    <form class="card form-card" action="/generate-workout" method="post" id="plan-form">
+        <h2>Tell us about you</h2>
+
+        <div class="form-grid">
+            <label>
+                Name
+                <input name="username" required minlength="2" maxlength="100" placeholder="Aisha">
+            </label>
+
+            <label>
+                User ID
+                <input name="user_id" required maxlength="50" placeholder="FB001">
+            </label>
+
+            <label>
+                Age
+                <input type="number" name="age" required min="{{ min_age }}" max="{{ max_age }}" placeholder="22">
+            </label>
+
+            <label>
+                Weight (kg)
+                <input type="number" name="weight" required min="{{ min_weight }}" max="{{ max_weight }}" step="0.1" placeholder="60">
+            </label>
+
+            <label class="full-width">
+                Fitness Goal
+                <input name="goal" required maxlength="100" placeholder="Weight loss, muscle gain, flexibility, general wellness">
+            </label>
+
+            <label class="full-width">
+                Workout Intensity
+                <select name="intensity" required>
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </label>
+        </div>
+
+        <button class="primary-button" type="submit">Generate My Plan</button>
+        <p class="form-note">Your information is stored locally in the application's SQLite database.</p>
+    </form>
+</section>
+{% endblock %}

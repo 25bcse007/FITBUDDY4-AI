@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or "FitBuddy" }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<header class="site-header">
+    <a class="brand" href="/">FitBuddy</a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/feedback">Update Plan</a>
+        <a href="/docs">API Docs</a>
+    </nav>
+</header>
+
+<main class="page-shell">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+    <p>FitBuddy provides general wellness guidance and is not a substitute for professional medical advice.</p>
+</footer>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section-heading">
+    <span class="eyebrow">YOUR FITBUDDY PLAN</span>
+    <h1>{{ "Updated" if updated else "Personalized" }} workout plan</h1>
+    <p>Designed around your submitted goal and preferred intensity.</p>
+</section>
+
+<section class="profile-grid">
+    <div class="stat"><span>Name</span><strong>{{ user.username }}</strong></div>
+    <div class="stat"><span>User ID</span><strong>{{ user.user_id }}</strong></div>
+    <div class="stat"><span>Age</span><strong>{{ user.age }}</strong></div>
+    <div class="stat"><span>Weight</span><strong>{{ user.weight }} kg</strong></div>
+    <div class="stat"><span>Goal</span><strong>{{ user.goal }}</strong></div>
+    <div class="stat"><span>Intensity</span><strong>{{ user.intensity|capitalize }}</strong></div>
+</section>
+
+<div class="content-grid">
+    <section class="card">
+        <div class="card-heading">
+            <h2>7-Day Workout Plan</h2>
+            <span class="pill">Gemini</span>
+        </div>
+        <pre class="plan-output">{{ display_plan }}</pre>
+    </section>
+
+    <aside class="card tip-card">
+        <h2>Nutrition / Recovery Tip</h2>
+        <p>{{ plan.nutrition_tip }}</p>
+        <hr>
+        <h3>Want to refine it?</h3>
+        <p>Tell FitBuddy what you want changed, such as more cardio, more rest days, or a different exercise focus.</p>
+        <a class="secondary-button" href="/feedback">Update This Plan</a>
+    </aside>
+</div>
+
+{% if plan.feedback %}
+<section class="card feedback-summary">
+    <h2>Latest Feedback</h2>
+    <p>{{ plan.feedback }}</p>
+</section>
+{% endif %}
+{% endblock %}

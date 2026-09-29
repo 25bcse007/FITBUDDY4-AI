@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section-heading">
+    <span class="eyebrow">ADMIN</span>
+    <h1>All users</h1>
+    <p>Stored FitBuddy profiles and their original/updated plans.</p>
+</section>
+
+{% if users %}
+<div class="table-wrap card">
+<table>
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Profile</th>
+            <th>Original Plan</th>
+            <th>Updated Plan</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        {% set plan = plans_by_user.get(user.user_id) %}
+        <tr>
+            <td>
+                <strong>{{ user.username }}</strong><br>
+                <small>{{ user.user_id }}</small>
+            </td>
+            <td>
+                Age: {{ user.age }}<br>
+                Weight: {{ user.weight }} kg<br>
+                Goal: {{ user.goal }}<br>
+                Intensity: {{ user.intensity }}
+            </td>
+            <td>
+                {% if plan %}
+                <details>
+                    <summary>View original</summary>
+                    <pre>{{ plan.original_plan }}</pre>
+                </details>
+                {% else %}—{% endif %}
+            </td>
+            <td>
+                {% if plan and plan.updated_plan %}
+                <details>
+                    <summary>View updated</summary>
+                    <pre>{{ plan.updated_plan }}</pre>
+                </details>
+                {% else %}No update yet{% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% else %}
+<div class="card empty-state">
+    <h2>No users yet</h2>
+    <p>Generate your first plan from the home page.</p>
+</div>
+{% endif %}
+{% endblock %}

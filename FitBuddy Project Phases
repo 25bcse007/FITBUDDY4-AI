@@ -1,0 +1,283 @@
+# FitBuddy Project Phases
+
+The project can be maintained as eight phases, with each phase ending in a reviewable submission. The diagram shows the sequence and the main FitBuddy outcome from each phase.
+
+flowchart LR
+    A["1. Brainstorming<br/>Problem and ideas"] --> B["2. Requirements<br/>What the app must do"]
+    B --> C["3. Design<br/>How the app will work"]
+    C --> D["4. Planning<br/>Tasks, roles, schedule"]
+    D --> E["5. Development<br/>Build FitBuddy"]
+    E --> F["6. Testing<br/>Check and fix"]
+    F --> G["7. Documentation<br/>Explain how to use and run it"]
+    G --> H["8. Demonstration<br/>Present the working app"]
+
+
+> **Suggested phase-wise submission:** For each phase, include its purpose, activities, decisions, evidence or diagrams, and final deliverable. Record changes as the project progresses.
+
+
+## 1. Brainstorming and Ideation Phase
+
+**Purpose:** Identify the problem FitBuddy will address and explore possible solutions before choosing features or technologies.
+
+**FitBuddy focus:** People may need help creating a structured workout plan that reflects their goals and preferences. FitBuddy’s idea is to use AI to generate a seven-day plan, offer a relevant nutrition or recovery tip, and revise the plan when a user gives feedback.
+
+**Activities:**
+
+- Describe the intended users, such as people seeking general fitness guidance or coaches managing clients.
+- Identify user needs and pain points.
+- Brainstorm possible features, such as workout generation, nutrition tips, feedback-based revisions, and an admin view.
+- Consider feasibility, including AI service access, development time, and data storage.
+- Compare potential approaches and record why the team selects one.
+
+**Example user scenarios:**
+
+- A user enters their age, weight, fitness goal, and preferred intensity to receive a seven-day workout plan.
+- A user asks for more cardio or additional rest days and receives a revised plan.
+- A user requests a nutrition or recovery tip related to their goal.
+- A coach reviews users and their saved plans.
+
+**Submission deliverables:**
+
+- Problem statement
+- Target-user description
+- Brainstormed feature list
+- User scenarios or a simple mind map
+- Initial decision on the product idea
+
+
+
+## 2. Requirement Analysis Phase
+
+**Purpose:** Turn the ideas into clear requirements that can be designed, implemented, and checked.
+
+**FitBuddy focus:** Define what users and administrators can do, what information the app needs, and how the app should behave when something goes wrong.
+
+**Activities:**
+
+- Separate **functional requirements** (features) from **non-functional requirements** (quality and constraints).
+- Define user inputs: name or username, age, weight, fitness goal, and workout intensity.
+- Define outputs: a seven-day plan and a nutrition or recovery tip.
+- Specify how feedback updates an existing plan and how original and updated plans are stored.
+- Define admin access and the information visible in the dashboard.
+- Record validation rules, error cases, and privacy expectations.
+
+**Example requirements:**
+
+- The app shall accept a user’s fitness details and generate a plan organized by day.
+- The app shall let a user submit feedback on a saved plan.
+- The app shall retain the original plan when saving an updated plan.
+- The app shall validate required fields and show a useful message for invalid input.
+- The app shall not expose private user information in a public view.
+
+**Submission deliverables:**
+
+- Software Requirements Specification (SRS) or requirements document
+- Functional and non-functional requirement lists
+- Use-case diagram or user stories
+- Input/output descriptions
+- Acceptance criteria for core features
+
+
+
+## 3. Project Design Phase
+
+**Purpose:** Decide how the requirements will be translated into an application structure, data model, interface, and AI workflow.
+
+**FitBuddy focus:** The source document describes a modular design using FastAPI, Jinja2 templates, Gemini models, and SQLite through SQLAlchemy.
+
+**Activities:**
+
+- Design the architecture and show how the browser, FastAPI routes, AI functions, and database interact.
+- Design the database entities and relationships for users and workout plans.
+- Plan the main routes, such as the home page, workout generation, feedback submission, and admin view.
+- Sketch the interface pages: input form, results page, and admin dashboard.
+- Define how prompts are sent to the AI models and how responses are displayed.
+- Decide how to handle missing, malformed, or unavailable AI responses.
+
+
+**Submission deliverables:**
+
+- System architecture diagram
+- Database schema or ER diagram
+- Route and component design
+- UI wireframes
+- AI interaction or prompt-flow description
+
+
+
+## 4. Project Planning Phase
+
+**Purpose:** Organize the work into tasks and milestones so the project can be built and reviewed in manageable steps.
+
+**FitBuddy focus:** Plan the implementation of the backend, AI integration, database, templates, testing, and final presentation.
+
+**Activities:**
+
+- Break requirements into development tasks.
+- Set task owners, milestones, and target dates.
+- Identify dependencies—for example, database-backed feedback updates depend on a working plan-generation flow.
+- List resources and risks, such as API credentials, service limits, or delayed responses.
+- Define how progress and changes will be tracked.
+
+**Example work breakdown:**
+
+| Work area | Example tasks |
+|---|---|
+| Setup | Create the project structure, virtual environment, and configuration |
+| Backend | Build FastAPI routes and input validation |
+| AI features | Generate workout plans, tips, and feedback-based revisions |
+| Data storage | Store user details and original and updated plans |
+| Interface | Create the input, results, and admin pages |
+| Quality and release | Check requirements, prepare documentation, and rehearse the demo |
+
+**Submission deliverables:**
+
+- Project schedule or Gantt chart
+- Work breakdown structure
+- Milestones and task assignments
+- Risk and dependency list
+- Definition of completion for each milestone
+
+
+
+## 5. Project Development Phase
+
+**Purpose:** Build the application according to the approved requirements and design.
+
+**FitBuddy focus:** Implement the working FastAPI application and connect its pages, database, and AI features.
+
+**Activities:**
+
+- Set up folders for application code, templates, static assets, and configuration.
+- Implement the FastAPI application and routes.
+- Build the user form and validate submitted data.
+- Connect the workout-generation function to the selected Gemini model.
+- Connect the nutrition-tip function.
+- Implement feedback submission and save revised plans while retaining the original.
+- Create SQLAlchemy models and database operations.
+- Build the results page and admin view.
+- Handle configuration securely, including keeping API keys out of source control.
+- Keep code organized and record important implementation decisions.
+
+**Possible project structure:**
+
+```text
+fitbuddy/
+├── app/
+│   ├── main.py
+│   ├── routes.py
+│   ├── database.py
+│   └── ai/
+│       ├── workout_generator.py
+│       └── nutrition_tip.py
+├── templates/
+│   ├── index.html
+│   ├── result.html
+│   └── all_users.html
+├── static/
+├── requirements.txt
+└── README.md
+```
+
+**Submission deliverables:**
+
+- Application source code
+- Database models and setup
+- User interface templates and assets
+- Configuration or environment-variable example
+- Development progress record
+
+
+
+## 6. Project Testing Phase
+
+**Purpose:** Check that FitBuddy works as required, that errors are handled properly, and that changes do not break existing features.
+
+**FitBuddy focus:** Verify the full user journey—from submitting details to generating, saving, revising, and viewing a plan.
+
+**Activities:**
+
+- Test required-field and invalid-input handling.
+- Check that workout plans include all seven days and are displayed clearly.
+- Check that nutrition tips are returned and shown.
+- Submit feedback and confirm the updated plan is saved while the original remains available.
+- Check that the admin view displays the intended records.
+- Test database behavior, including empty or missing records.
+- Test AI-service failures or empty responses and confirm the app shows a helpful error.
+- Test the pages at different screen sizes if responsive behavior is required.
+- Record defects, fixes, and retest results.
+
+**Example test cases:**
+
+| Test | Expected result |
+|---|---|
+| Submit valid user details | A plan and tip are displayed and saved |
+| Omit a required field | The user receives a clear validation message |
+| Submit feedback for a saved plan | A revised plan appears and is stored separately |
+| Request an unknown user or plan | The app handles the request without crashing |
+| AI service is unavailable | The app reports a useful error and remains usable |
+
+**Submission deliverables:**
+
+- Test plan and test cases
+- Test execution results
+- Defect log and resolution notes
+- Evidence such as screenshots or API responses
+- Retest summary
+
+
+
+## 7. Project Documentation Phase
+
+**Purpose:** Explain the project to users, developers, evaluators, and future maintainers.
+
+**FitBuddy focus:** Document what FitBuddy does, how its parts fit together, and how to install, configure, run, and use it.
+
+**Activities:**
+
+- Write an overview and feature list.
+- Document prerequisites and installation steps.
+- Explain environment variables and API-key configuration without publishing secret values.
+- Provide instructions to start the local server and access the web interface.
+- Document the routes and expected inputs.
+- Describe the database structure and AI integration at an appropriate level.
+- Add troubleshooting guidance and known limitations.
+- Keep documentation aligned with the final implementation.
+
+**Submission deliverables:**
+
+- README or user guide
+- Installation and configuration instructions
+- Architecture and database diagrams
+- API or route reference
+- Troubleshooting and limitations section
+
+
+
+## 8. Project Demonstration Phase
+
+**Purpose:** Present the completed project clearly and show evidence that its main requirements work.
+
+**FitBuddy focus:** Demonstrate the user flow and explain the system design and development decisions.
+
+**Suggested demonstration sequence:**
+
+1. Introduce the problem and FitBuddy’s purpose.
+2. Show the home page and enter sample fitness details.
+3. Generate and review the seven-day workout plan.
+4. Show the nutrition or recovery tip.
+5. Submit feedback, such as requesting more cardio or an extra rest day.
+6. Show the revised plan and explain how the original is retained.
+7. Open the admin dashboard and show stored users and plans.
+8. Briefly explain the architecture, testing, and known limitations.
+
+**Submission deliverables:**
+
+- Demonstration slides or speaking outline
+- Working application or recorded walkthrough
+- Sample data for the demonstration
+- Screenshots of key features
+- Short summary of outcomes and future improvements
+
+A clear project submission can use one folder per phase, with each folder containing that phase’s documents, diagrams, evidence, and review notes.The phase sequence is
+Brainstorming and Ideation → Requirement Analysis → Project Design → Project Planning → Project Development → Project Testing → Project Documentation → Project Demonstration.
